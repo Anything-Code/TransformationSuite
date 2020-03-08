@@ -2,7 +2,7 @@ import bodyParser from 'body-parser'
 import session from 'express-session'
 import colors from 'vuetify/lib/util/colors'
 
-const FileStore = require('session-file-store')(session);
+// const FileStore = require('session-file-store')(session);
 
 export default {
   head: {
@@ -55,7 +55,7 @@ export default {
     bodyParser.json(),
     // session middleware
     session({
-      store: new FileStore(),
+      // store: new FileStore(),
       secret: 'super-secret-key',
       resave: false,
       saveUninitialized: false,
