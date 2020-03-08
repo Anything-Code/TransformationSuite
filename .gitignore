@@ -1,0 +1,5 @@
+.nuxt
+node_modules
+sessions
+package-lock.json
+static/sw.js
