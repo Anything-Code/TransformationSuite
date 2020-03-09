@@ -14,7 +14,7 @@ export default {
       try {
         await this.$store.dispatch('logout')
 
-        // this.$router.push('/admin')
+        this.$router.push('/admin')
       } catch (error) {
         this.error = error.message
       }

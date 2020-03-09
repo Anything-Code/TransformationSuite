@@ -27,13 +27,13 @@ export default {
       theme: {
         themes: {
           light: {
-            primary: '#FFD420',
+            primary: '#A70553',
             secondary: '#FFD420',
             accent: '#FFD420',
             error: '#FFD420',
           },
           dark: {
-            primary: '#FFD420',
+            primary: '#A70553',
             secondary: '#FFD420',
             accent: '#FFD420',
             error: '#FFD420',

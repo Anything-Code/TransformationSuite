@@ -1,12 +1,16 @@
-export default function ({ store, error, redirect }) {
+export default function ({ store, error, route, redirect }) {
   if (store.state.user) {
-    return redirect('/admin/home')
+    if (route.path === '/admin') {
+      return redirect('/admin/home')
+    }
   }
   else {
     // error({
     //   message: 'You are not connected',
     //   statusCode: 403
     // })
-    return redirect('/admin')
+    if (route.path !== '/admin') {
+      return redirect('/admin')
+    }
   }
 }

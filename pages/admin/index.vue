@@ -15,7 +15,7 @@
             md="4"
           >
             <v-card dark>
-              <v-toolbar flat>Login</v-toolbar>
+              <v-toolbar class="primary--text" flat>Login</v-toolbar>
               <v-card-text class="pb-0 pt-8">
                 <v-form>
                   <v-text-field
@@ -43,6 +43,7 @@
               </v-card-text>
               <v-card-actions>
                 <v-btn
+                  class="primary--text"
                   @click="login"
                   block
                   :large="$vuetify.breakpoint.mdAndDown ? true : false"
@@ -75,7 +76,7 @@
             password: this.password
           })
 
-        // this.$router.push('/admin/home')
+          this.$router.push('/admin/home')
         } catch (error) {
           this.error = error.message
         }
