@@ -13,6 +13,7 @@ export default {
       { hid: 'description', content: 'Hier finden Sie die innovativsten Produkte zum Thema Digitalisierung, bereitgestellt durch die besten KMUs auf diesem Gebiet in Heidelberg. Außerdem können Sie sich für einen Ausstellungsplatz bewerben und Fragen stellen!' }
     ]
   },
+  css: ['~/assets/app.scss'],
   modules: [
     ['@nuxtjs/pwa', {
       manifest: {
@@ -26,13 +27,16 @@ export default {
       theme: {
         themes: {
           light: {
-            primary: colors.purple,
-            secondary: colors.grey.darken1,
-            accent: colors.shades.black,
-            error: colors.red.accent3,
+            primary: '#FFD420',
+            secondary: '#FFD420',
+            accent: '#FFD420',
+            error: '#FFD420',
           },
           dark: {
-            primary: colors.blue.lighten3,
+            primary: '#FFD420',
+            secondary: '#FFD420',
+            accent: '#FFD420',
+            error: '#FFD420',
           },
         },
       },

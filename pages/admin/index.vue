@@ -1,71 +1,92 @@
 <template>
-  <div class="container">
-    <h1>Login</h1>
-    <form v-if="!$store.state.authUser" @submit.prevent="login">
-      <p v-if="formError" class="error">
-        {{ formError }}
-      </p>
-      <p><i>Benutzername und Passwort: <b>demo</b></i></p>
-      <p>Benutzername: <input v-model="formUsername" type="text" name="username"></p>
-      <p>Passwort: <input v-model="formPassword" type="password" name="password"></p>
-      <button type="submit">
-        Login
-      </button>
-    </form>
-    <div v-else>
-      Hallo {{ $store.state.authUser.username }}!
-      <p>
-        <NuxtLink to="/admin/secret">
-          Top Secret Seite nur für Admins
-        </NuxtLink>
-      </p>
-      <p><i>Trotz Seite neu Laden immer noch eingeloggt!</i></p>
-      <button @click="logout">
-        Logout
-      </button>
-    </div>
-  </div>
+  <v-app>
+    <v-content>
+      <v-container
+        class="fill-height"
+        fluid
+      >
+        <v-row
+          align="center"
+          justify="center"
+        >
+          <v-col
+            cols="12"
+            sm="8"
+            md="4"
+          >
+            <v-card dark>
+              <v-toolbar flat>Login</v-toolbar>
+              <v-card-text class="pb-0 pt-8">
+                <v-form>
+                  <v-text-field
+                    @keyup.enter="login"
+                    v-model="username"
+                    outlined
+                    label="Benutzername"
+                    name="username"
+                    prepend-icon="mdi-account"
+                    type="text"
+                  />
+
+                  <v-text-field
+                    @keyup.enter="login"
+                    v-model="password"
+                    outlined
+                    label="Password"
+                    name="password"
+                    prepend-icon="mdi-lock"
+                    :type="passwordVisible ? 'text' : 'password'"
+                    :append-icon="passwordVisible ? 'mdi-eye' : 'mdi-eye-off'"
+                    @click:append="passwordVisible = !passwordVisible"
+                  />
+                </v-form>
+              </v-card-text>
+              <v-card-actions>
+                <v-btn
+                  @click="login"
+                  block
+                  :large="$vuetify.breakpoint.mdAndDown ? true : false"
+                >Login</v-btn>
+              </v-card-actions>
+            </v-card>
+          </v-col>
+        </v-row>
+      </v-container>
+    </v-content>
+  </v-app>
 </template>
 
 <script>
-export default {
-  data () {
-    return {
-      formError: null,
-      formUsername: '',
-      formPassword: ''
-    }
-  },
-  methods: {
-    async login () {
-      try {
-        await this.$store.dispatch('login', {
-          username: this.formUsername,
-          password: this.formPassword
-        })
-        this.formUsername = ''
-        this.formPassword = ''
-        this.formError = null
-      } catch (e) {
-        this.formError = e.message
+  export default {
+    middleware: 'auth',
+    data () {
+      return {
+        username: '',
+        password: '',
+        error: null,
+        passwordVisible: false
       }
     },
-    async logout () {
-      try {
-        await this.$store.dispatch('logout')
-      } catch (e) {
-        this.formError = e.message
+    methods: {
+      async login () {
+        try {
+          await this.$store.dispatch('login', {
+            username: this.username,
+            password: this.password
+          })
+
+        // this.$router.push('/admin/home')
+        } catch (error) {
+          this.error = error.message
+        }
+      },
+      async logout () {
+        try {
+          await this.$store.dispatch('logout')
+        } catch (error) {
+          this.error = error.message
+        }
       }
     }
   }
-}
 </script>
-
-<style>
-.container {
-  padding: 100px;
-}
-.error {
-  color: red;
-}
-</style>
