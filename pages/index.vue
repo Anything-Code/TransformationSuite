@@ -20,7 +20,7 @@
         ></v-img>
       </template>
 
-      <v-app-bar-nav-icon color="white" @click="$store.commit('SET_DRAWER', true)" />
+      <v-app-bar-nav-icon color="white" @click="toggleDrawer" />
 
       <v-toolbar-title>Transformation Suite</v-toolbar-title>
 
@@ -33,17 +33,14 @@
     </v-app-bar>
 
     <v-content id="scrolling" style="height: 100vh">
-      <v-container
-        class="fill-height p-relative pa-0"
-        fluid
-      >
+      <v-container class="fill-height p-relative pa-0" style="max-width: 800px">
         <v-row
           justify="center"
           align="center"
           class="ma-0"
         >
           <v-col class="text-center">
-            <h1 class="center" id="typewriter"></h1>
+            <h1 class="center headline" id="typewriter"></h1>
           </v-col>
         </v-row>
 
@@ -56,7 +53,12 @@
 <script>
 export default {
   layout: 'main',
-  mounted () {    
+  methods: {
+    toggleDrawer () {
+      this.$store.state.drawer ? this.$store.commit('SET_DRAWER', false) : this.$store.commit('SET_DRAWER', true)
+    }
+  },
+  mounted () {
     this.$particles();
     this.$typewriter();
   }

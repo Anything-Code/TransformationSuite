@@ -25,18 +25,18 @@ export default ({ app }, inject) => {
             }
           },
           bubble: {
-            distance: 800,
-            size: 80,
+            distance: 200,
+            size: 4,
             duration: 2,
             opacity: 0.8,
             speed: 3
           },
           repulse: {
-            distance: 50,
-            duration: 0.4
+            distance: 100,
+            duration: 0
           },
           push: {
-            particles_nb: 1
+            particles_nb: 2
           },
           remove: {
             particles_nb: 0
@@ -65,12 +65,12 @@ export default ({ app }, inject) => {
           }
         },
         opacity: {
-          value: 1,
-          random: false,
+          value: .6,
+          random: true,
           anim: {
-            enable: false,
+            enable: true,
             speed: 1,
-            opacity_min: 0,
+            opacity_min: .2,
             sync: false
           }
         },
