@@ -8,7 +8,9 @@
     "express": "^4.15.3",
     "express-session": "^1.15.3",
     "nuxt": "latest",
-    "session-file-store": "^1.4.0"
+    "particles.js": "^2.0.0",
+    "session-file-store": "^1.4.0",
+    "typewriter-effect": "^2.13.0"
   },
   "scripts": {
     "dev": "nuxt",

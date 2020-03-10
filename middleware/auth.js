@@ -1,7 +1,7 @@
 export default function ({ store, error, route, redirect }) {
   if (store.state.user) {
     if (route.path === '/admin') {
-      return redirect('/admin/home')
+      return redirect('/')
     }
   }
   else {

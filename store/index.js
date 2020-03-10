@@ -1,10 +1,14 @@
 import axios from 'axios'
 
 export const state = () => ({
+  drawer: null,
   user: null
 })
 
 export const mutations = {
+  SET_DRAWER (state, drawer) {
+    state.drawer = drawer
+  },
   SET_USER (state, user) {
     state.user = user
   }

@@ -14,6 +14,10 @@ export default {
     ]
   },
   css: ['~/assets/app.scss'],
+  plugins: [
+    '~/plugins/particles.client.js',
+    '~/plugins/typewriter.client.js'
+  ],
   modules: [
     ['@nuxtjs/pwa', {
       manifest: {

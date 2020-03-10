@@ -15,15 +15,13 @@
             md="4"
           >
             <v-card dark>
-              <v-toolbar class="primary--text" flat>Login</v-toolbar>
-              <v-card-text class="pb-0 pt-8">
+              <v-toolbar class="secondary--text" flat>Login</v-toolbar>
+              <v-card-text class="pb-0 pt-5">
                 <v-form>
                   <v-text-field
                     @keyup.enter="login"
                     v-model="username"
-                    outlined
                     label="Benutzername"
-                    name="username"
                     prepend-icon="mdi-account"
                     type="text"
                   />
@@ -31,9 +29,7 @@
                   <v-text-field
                     @keyup.enter="login"
                     v-model="password"
-                    outlined
                     label="Password"
-                    name="password"
                     prepend-icon="mdi-lock"
                     :type="passwordVisible ? 'text' : 'password'"
                     :append-icon="passwordVisible ? 'mdi-eye' : 'mdi-eye-off'"
@@ -43,7 +39,7 @@
               </v-card-text>
               <v-card-actions>
                 <v-btn
-                  class="primary--text"
+                  class="secondary--text"
                   @click="login"
                   block
                   :large="$vuetify.breakpoint.mdAndDown ? true : false"
@@ -76,14 +72,7 @@
             password: this.password
           })
 
-          this.$router.push('/admin/home')
-        } catch (error) {
-          this.error = error.message
-        }
-      },
-      async logout () {
-        try {
-          await this.$store.dispatch('logout')
+          this.$router.push('/')
         } catch (error) {
           this.error = error.message
         }
