@@ -1,108 +1,112 @@
 import 'particles.js'
 
-if (document.querySelector('#particles'))
-particlesJS('particles', {
-  interactivity: {
-    detect_on: "canvas",
-    events: {
-      onhover: {
-        enable: true,
-        mode: ['grab', 'repulse']
-      },
-      onclick: {
-        enable: true,
-        mode: 'push'
-      },
-      resize: true
-    },
-    modes: {
-      grab: {
-        distance: 200,
-        line_linked: {
-          opacity: .3
+export default ({ app }, inject) => {
+  inject('particles', () => {
+    if (document.querySelector('#particles'))
+    particlesJS('particles', {
+      interactivity: {
+        detect_on: "canvas",
+        events: {
+          onhover: {
+            enable: true,
+            mode: ['grab', 'repulse']
+          },
+          onclick: {
+            enable: true,
+            mode: 'push'
+          },
+          resize: true
+        },
+        modes: {
+          grab: {
+            distance: 200,
+            line_linked: {
+              opacity: .3
+            }
+          },
+          bubble: {
+            distance: 800,
+            size: 80,
+            duration: 2,
+            opacity: 0.8,
+            speed: 3
+          },
+          repulse: {
+            distance: 50,
+            duration: 0.4
+          },
+          push: {
+            particles_nb: 1
+          },
+          remove: {
+            particles_nb: 0
+          }
         }
       },
-      bubble: {
-        distance: 800,
-        size: 80,
-        duration: 2,
-        opacity: 0.8,
-        speed: 3
+      particles: {
+        number: {
+          value: 50,
+          density: {
+            enable: false,
+            value_area: 800
+          }
+        },
+        color: {
+          value: '#000000' // 00B1EF
+        },
+        shape: {
+          type: "circle",
+          stroke: {
+            width: 0,
+            color: '#ffffff'
+          },
+          polygon: {
+            nb_sides: 3
+          }
+        },
+        opacity: {
+          value: 1,
+          random: false,
+          anim: {
+            enable: false,
+            speed: 1,
+            opacity_min: 0,
+            sync: false
+          }
+        },
+        size: {
+          value: 3,
+          random: false,
+          anim: {
+            enable: false,
+            speed: 80,
+            size_min: 0.1,
+            sync: false
+          }
+        },
+        line_linked: {
+          enable: true,
+          distance: 300,
+          color: '#000000',
+          opacity: .25,
+          width: 1
+        },
+        move: {
+          enable: true,
+          speed: 1,
+          direction: "none",
+          random: false,
+          straight: false,
+          out_mode: "out",
+          bounce: false,
+          attract: {
+            enable: false,
+            rotateX: 600,
+            rotateY: 1200
+          }
+        }
       },
-      repulse: {
-        distance: 50,
-        duration: 0.4
-      },
-      push: {
-        particles_nb: 1
-      },
-      remove: {
-        particles_nb: 0
-      }
-    }
-  },
-  particles: {
-    number: {
-      value: 50,
-      density: {
-        enable: false,
-        value_area: 800
-      }
-    },
-    color: {
-      value: '#000000' // 00B1EF
-    },
-    shape: {
-      type: "circle",
-      stroke: {
-        width: 0,
-        color: '#ffffff'
-      },
-      polygon: {
-        nb_sides: 3
-      }
-    },
-    opacity: {
-      value: 1,
-      random: false,
-      anim: {
-        enable: false,
-        speed: 1,
-        opacity_min: 0,
-        sync: false
-      }
-    },
-    size: {
-      value: 3,
-      random: false,
-      anim: {
-        enable: false,
-        speed: 80,
-        size_min: 0.1,
-        sync: false
-      }
-    },
-    line_linked: {
-      enable: true,
-      distance: 300,
-      color: '#000000',
-      opacity: .25,
-      width: 1
-    },
-    move: {
-      enable: true,
-      speed: 1,
-      direction: "none",
-      random: false,
-      straight: false,
-      out_mode: "out",
-      bounce: false,
-      attract: {
-        enable: false,
-        rotateX: 600,
-        rotateY: 1200
-      }
-    }
-  },
-  retina_detect: true
-});
+      retina_detect: true
+    });
+  });
+}

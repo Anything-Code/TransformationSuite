@@ -40,6 +40,7 @@
         <v-row
           justify="center"
           align="center"
+          class="ma-0"
         >
           <v-col class="text-center">
             <h1 class="center" id="typewriter"></h1>
@@ -53,9 +54,11 @@
 </template>
 
 <script>
-import { mapMutations } from 'vuex'
-
 export default {
-  layout: 'main'
+  layout: 'main',
+  mounted () {    
+    this.$particles();
+    this.$typewriter();
+  }
 }
 </script>
