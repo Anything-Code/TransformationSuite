@@ -14,11 +14,17 @@ export default {
     ]
   },
   css: ['~/assets/app.scss'],
+  loading: {
+    color: '#FFC921',
+    failedColor: '#A70553',
+    continuous: true
+  },
   plugins: [
     '~/plugins/particles.client.js',
     '~/plugins/typewriter.client.js'
   ],
   modules: [
+    '@nuxtjs/axios',
     ['@nuxtjs/pwa', {
       manifest: {
         name: 'Transformation Suite',
@@ -34,13 +40,11 @@ export default {
             primary: '#A70553',
             secondary: '#FFD420',
             accent: '#FFD420',
-            error: '#FFD420',
           },
           dark: {
             primary: '#A70553',
             secondary: '#FFD420',
             accent: '#FFD420',
-            error: '#FFD420',
           },
         },
       },

@@ -42,7 +42,7 @@
                   class="secondary--text"
                   @click="login"
                   block
-                  :large="$vuetify.breakpoint.mdAndDown ? true : false"
+                  :large="$vuetify.breakpoint.xsOnly ? true : false"
                 >Login</v-btn>
               </v-card-actions>
             </v-card>

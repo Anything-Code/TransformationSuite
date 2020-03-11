@@ -92,7 +92,7 @@
           </v-list-item-content>
         </v-list-item>
 
-        <v-list-item>
+        <v-list-item to="/faq">
           <v-list-item-action>
             <v-icon>mdi-comment-multiple</v-icon>
           </v-list-item-action>

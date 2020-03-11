@@ -32,6 +32,24 @@ export const actions = {
       throw error
     }
   },
+  postQuestionAdmin (store, question) {
+    return new Promise((resolve, reject) => {
+      axios.post('/api/admin/questions', { question }).then(response => {
+        resolve(response.data)
+      }).catch(error => {
+        reject(error.response.data)
+      })
+    })
+  },
+  postQuestion (store, question) {
+    return new Promise((resolve, reject) => {
+      axios.post('/api/question', { question }).then(response => {
+        resolve(response.data)
+      }).catch(error => {
+        reject(error.response.data)
+      })
+    })
+  },
 
   async logout ({ commit }) {
     await axios.post('/api/logout')
