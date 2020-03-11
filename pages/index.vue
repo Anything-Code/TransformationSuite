@@ -33,13 +33,13 @@
     </v-app-bar>
 
     <v-content id="scrolling" style="height: 100vh">
-      <v-container class="fill-height p-relative pa-0" style="max-width: 800px">
+      <v-container class="fill-height p-relative pa-0">
         <v-row
           justify="center"
           align="center"
           class="ma-0"
         >
-          <v-col class="text-center">
+          <v-col style="max-width: 800px" class="text-center">
             <h1 class="center headline" id="typewriter"></h1>
           </v-col>
         </v-row>
