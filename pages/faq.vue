@@ -44,7 +44,8 @@
 
           <v-row>
             <v-col>
-              <h1 class="headline">Häufig gestellte Fragen</h1>
+              <h1 v-if="questions.length > 0" class="headline">Häufig gestellte Fragen</h1>
+              <h1 v-else class="subtitle-2">Es wurden leider noch keine Fragen gestellt.</h1>
             </v-col>
           </v-row>
 
@@ -71,7 +72,7 @@
               <v-expansion-panels accordion>
                 <v-expansion-panel>
                   <v-expansion-panel-header>
-                    <h1 class="title">Formulieren Sie hier eine Frage</h1>
+                    <b>Jetzt eine Frage formulieren</b>
                   </v-expansion-panel-header>
                   <v-expansion-panel-content>
                     <v-form ref="form" @submit="submit">
