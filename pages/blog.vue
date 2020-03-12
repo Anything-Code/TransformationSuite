@@ -28,7 +28,7 @@
     <v-sheet max-height="100vh" id="scrolling" class="overflow-y-auto">
       <v-content>
         <v-container class="fill-height">
-          <v-row>
+          <v-row class="mx-0">
             <v-col cols="12" md="6">
               <v-card>
                 <v-list-item>

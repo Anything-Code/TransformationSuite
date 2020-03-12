@@ -7,7 +7,7 @@
         </v-card-title>
 
         <v-card-text class="pt-5">
-          <v-row>
+          <v-row class="mx-0">
             <v-col>
               <v-form ref="form">
                 <v-textarea
@@ -61,7 +61,7 @@
       <v-content>
         <v-container class="fill-height">
           
-          <v-row>
+          <v-row class="mx-0">
             <v-col cols="12" sm="11">
               <h1 class="headline">Gestellte Fragen:</h1>
             </v-col>
@@ -82,7 +82,7 @@
             </v-col>
           </v-row>
           
-          <v-row>
+          <v-row class="mx-0">
             <v-col class="pt-0">
               <v-data-table
                 :headers="headers"

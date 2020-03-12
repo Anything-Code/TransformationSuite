@@ -43,14 +43,14 @@
       <v-content>
         <v-container class="fill-height">
 
-          <v-row>
+          <v-row class="mx-0">
             <v-col>
               <h1 v-if="questions.length > 0" class="headline">Häufig gestellte Fragen</h1>
               <h1 v-else class="subtitle-2">Es wurden leider noch keine Fragen gestellt.</h1>
             </v-col>
           </v-row>
 
-          <v-row v-if="questions.length > 0">
+          <v-row class="mx-0" v-if="questions.length > 0">
             <v-col>
               <v-expansion-panels active-class="grey lighten-4" accordion>
                 <v-expansion-panel
@@ -68,7 +68,7 @@
             </v-col>
           </v-row>
 
-          <v-row>
+          <v-row class="mx-0">
             <v-col cols="12">
               <v-expansion-panels accordion>
                 <v-expansion-panel>
