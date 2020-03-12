@@ -54,29 +54,34 @@
 </template>
 
 <script>
-  export default {
-    middleware: 'auth',
-    data () {
-      return {
-        username: '',
-        password: '',
-        error: null,
-        passwordVisible: false
-      }
-    },
-    methods: {
-      async login () {
-        try {
-          await this.$store.dispatch('login', {
-            username: this.username,
-            password: this.password
-          })
+export default {
+  head () {
+    return {
+      title: 'Transformation Suite | Login'
+    }
+  },
+  middleware: 'auth',
+  data () {
+    return {
+      username: '',
+      password: '',
+      error: null,
+      passwordVisible: false
+    }
+  },
+  methods: {
+    async login () {
+      try {
+        await this.$store.dispatch('login', {
+          username: this.username,
+          password: this.password
+        })
 
-          this.$router.push('/')
-        } catch (error) {
-          this.error = error.message
-        }
+        this.$router.push('/')
+      } catch (error) {
+        this.error = error.message
       }
     }
   }
+}
 </script>

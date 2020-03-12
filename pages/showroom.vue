@@ -22,7 +22,7 @@
 
       <v-app-bar-nav-icon color="white" @click="toggleDrawer" />
 
-      <v-toolbar-title>Transformation Suite</v-toolbar-title>
+      <v-toolbar-title>Aktuelle Ausstellung</v-toolbar-title>
 
       <template v-slot:extension>
         <v-tabs align-with-title>
@@ -32,35 +32,29 @@
       </template>
     </v-app-bar>
 
-    <v-content id="scrolling" style="height: 100vh">
-      <v-container class="fill-height p-relative pa-0">
-        <v-row
-          justify="center"
-          align="center"
-          class="ma-0"
-        >
-          <v-col style="max-width: 800px" class="text-center">
-            <h1 class="center headline" id="typewriter"></h1>
-          </v-col>
-        </v-row>
-
-        <div id="particles"></div>
-      </v-container>
-    </v-content>
+    <v-sheet max-height="100vh" id="scrolling" class="overflow-y-auto">
+      
+    </v-sheet>
   </div>
 </template>
 
 <script>
 export default {
+  head () {
+    return {
+      title: 'Transformation Suite | Aktuelle Ausstellung'
+    }
+  },
   layout: 'main',
+  data () {
+    return {
+      tabs: 'showroom'
+    }
+  },
   methods: {
     toggleDrawer () {
       this.$store.state.drawer ? this.$store.commit('SET_DRAWER', false) : this.$store.commit('SET_DRAWER', true)
     }
   },
-  mounted () {
-    this.$particles();
-    this.$typewriter();
-  }
 }
 </script>

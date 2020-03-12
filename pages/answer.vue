@@ -126,6 +126,11 @@
 import axios from 'axios'
 
 export default {
+  head () {
+    return {
+      title: 'Transformation Suite | Fragen beantworten'
+    }
+  },
   middleware: 'auth',
   layout: 'main',
   asyncData ({ $axios }) {

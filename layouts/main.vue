@@ -40,6 +40,33 @@
             <v-list-item-title>Startseite</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
+        
+        <v-list-item to="showroom">
+          <v-list-item-action>
+            <v-icon>mdi-apps</v-icon>
+          </v-list-item-action>
+          <v-list-item-content>
+            <v-list-item-title>Aktuelle Ausstellung</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+        
+        <v-list-item>
+          <v-list-item-action>
+            <v-icon>mdi-book-open-page-variant</v-icon>
+          </v-list-item-action>
+          <v-list-item-content>
+            <v-list-item-title>Glossar</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+
+        <v-list-item to="/faq">
+          <v-list-item-action>
+            <v-icon>mdi-frequently-asked-questions</v-icon>
+          </v-list-item-action>
+          <v-list-item-content>
+            <v-list-item-title>FAQ</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
 
         <!-- <v-list-group
           no-action
@@ -65,9 +92,9 @@
           </v-list-item>
         </v-list-group> -->
         
-        <v-list-item>
+        <v-list-item to="/blog">
           <v-list-item-action>
-            <v-icon>mdi-book-open-page-variant</v-icon>
+            <v-icon>mdi-message-text</v-icon>
           </v-list-item-action>
           <v-list-item-content>
             <v-list-item-title>Blog</v-list-item-title>
@@ -76,28 +103,19 @@
         
         <v-list-item>
           <v-list-item-action>
-            <v-icon>mdi-bookshelf</v-icon>
+            <v-icon>mdi-calendar-month</v-icon>
           </v-list-item-action>
           <v-list-item-content>
-            <v-list-item-title>Bewerben</v-list-item-title>
+            <v-list-item-title>Besuchstermin vereinbaren</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
         
         <v-list-item>
           <v-list-item-action>
-            <v-icon>mdi-calendar-month</v-icon>
+            <v-icon>mdi-format-list-text</v-icon>
           </v-list-item-action>
           <v-list-item-content>
-            <v-list-item-title>Besuch buchen</v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
-
-        <v-list-item to="/faq">
-          <v-list-item-action>
-            <v-icon>mdi-comment-multiple</v-icon>
-          </v-list-item-action>
-          <v-list-item-content>
-            <v-list-item-title>FAQ</v-list-item-title>
+            <v-list-item-title>Formular für Aussteller</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
 

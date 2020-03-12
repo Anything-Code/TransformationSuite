@@ -30,12 +30,13 @@
 
       <v-toolbar-title>FAQ</v-toolbar-title>
 
-      <template v-slot:extension>
+      <template v-if="$store.state.user" v-slot:extension>
         <v-tabs v-model="tabs" align-with-title>
           <v-tab to="/faq" @click="$event.preventDefault()" href="faq">Fragen</v-tab>
-          <v-tab to="/answer" @click="$event.preventDefault()" href="answer" v-if="$store.state.user">Antworten</v-tab>
+          <v-tab to="/answer" @click="$event.preventDefault()" href="answer">Antworten</v-tab>
         </v-tabs>
       </template>
+
     </v-app-bar>
 
     <v-sheet max-height="100vh" id="scrolling" class="overflow-y-auto">
@@ -86,9 +87,9 @@
                       />
                       <v-btn
                         :disabled="loading"
-                        :large="$vuetify.breakpoint.xsOnly ? true : false"
+                        large
+                        text
                         block
-                        class="primary white--text"
                         type="submit"
                       >
                         <v-icon class="loader" v-if="loading">mdi-cached</v-icon>
@@ -115,6 +116,11 @@
 
 <script>
 export default {
+  head () {
+    return {
+      title: 'Transformation Suite | FAQ'
+    }
+  },
   layout: 'main',
   asyncData ({ $axios }) {
     return $axios.$get(`/api/questions`).then(response => {
