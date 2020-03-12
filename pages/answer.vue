@@ -1,8 +1,27 @@
 <template>
   <div>
     <v-dialog v-model="dialog" max-width="600">
-      <v-card class="pa-4">
-        
+      <v-card v-if="selectedQuestion">
+        <v-card-title class="headline grey darken-4 white--text">
+          Frage bearbeiten
+        </v-card-title>
+
+        <v-card-text class="pt-5">
+          <v-row>
+            <v-col>
+              <v-form ref="form">
+                <v-textarea
+                  required
+                  :rules="[rules.required, rules.counter]"
+                  label="Frage"
+                  v-model="selectedQuestion.text"
+                  outlined
+                />
+                <v-textarea label="Antwort" v-model="selectedQuestion.answer" outlined />
+              </v-form>
+            </v-col>
+          </v-row>
+        </v-card-text>
       </v-card>
     </v-dialog>
 
@@ -48,13 +67,18 @@
             </v-col>
             <v-col cols="12" sm="1">
               <v-btn
+                @click="submit"
+                :disabled="saveLoading"
                 :text="$vuetify.breakpoint.xsOnly ? false : true"
                 :class="$vuetify.breakpoint.xsOnly ? 'primary white--text' : ''"
                 class="float-right"
                 :block="$vuetify.breakpoint.xsOnly ? true : false"
                 :large="$vuetify.breakpoint.xsOnly ? true : false"
                 type="submit"
-              >Speichern</v-btn>
+              >
+                <v-icon class="loader" v-if="saveLoading">mdi-cached</v-icon>
+                <span v-else>Speichern</span>
+              </v-btn>
             </v-col>
           </v-row>
           
@@ -70,13 +94,23 @@
                   {{ item.text.substring(0, 20) }}{{ item.text.length > 20 ? '...' : '' }}
                 </template>
                 <template v-slot:item.edit="{ item }">
-                  <v-btn icon><v-icon>mdi-pen</v-icon></v-btn>
+                  <v-btn @click="selectedQuestion = item; dialog = true" icon>
+                    <v-icon>mdi-pen</v-icon>
+                  </v-btn>
                 </template>
                 <template v-slot:item.visible="{ item }">
-                  <v-btn icon><v-icon>{{ item.visible ? 'mdi-checkbox-marked' : 'mdi-checkbox-blank-outline' }}</v-icon></v-btn>
+                  <v-btn @click="editQuestion($event, item)" icon :disabled="editLoadingSingle === item.id">
+                    <v-icon class="loader" v-if="editLoadingSingle === item.id">mdi-cached</v-icon>
+                    <v-icon v-else>
+                      {{ item.visible ? 'mdi-checkbox-marked' : 'mdi-checkbox-blank-outline' }}
+                    </v-icon>
+                  </v-btn>
                 </template>
                 <template v-slot:item.delete="{ item }">
-                  <v-btn @click="deleteQuestion(item.id)" icon><v-icon>mdi-trash-can-outline</v-icon></v-btn>
+                  <v-btn :disabled="deleteLoading === item.id" @click="deleteQuestion(item.id)" icon>
+                    <v-icon :class="deleteLoading === item.id ? 'loader' : ''">
+                      {{ deleteLoading === item.id ? 'mdi-cached' : 'mdi-trash-can-outline' }}
+                    </v-icon></v-btn>
                 </template>
               </v-data-table>
             </v-col>
@@ -120,6 +154,10 @@ export default {
         { text: 'Sichtbar', value: 'visible', sortable: false },
         { text: 'Löschen', value: 'delete', sortable: false }
       ],
+      editLoadingSingle: null,
+      saveLoading: false,
+      deleteLoading: null,
+      selectedQuestion: null,
       tabs: 'answer',
       dialog: false
     }
@@ -128,14 +166,28 @@ export default {
     submit (event) {
       event.preventDefault()
       if (this.$refs.form.validate()) {
+        this.saveLoading = true
         this.$store.dispatch('postQuestionAdmin', this.questions).then(response => {
-          console.log(response.data)
+          this.saveLoading = false
+        });
+      }
+    },
+    editQuestion (event, question) {
+      event.preventDefault()
+      if (this.$refs.form.validate()) {
+        this.editLoadingSingle = question.id
+        const questions = JSON.parse(JSON.stringify(this.questions))
+        questions.find(item => item.id === question.id).visible = !question.visible
+        this.$store.dispatch('postQuestionAdmin', questions).then(response => {
+          question.visible = !question.visible
+          this.editLoadingSingle = null
         });
       }
     },
     deleteQuestion (id) {
+      this.deleteLoading = id
       this.$store.dispatch('deleteQuestion', id).then(response => {
-        console.log(response)
+        this.deleteLoading = null
         this.questions = response.questions
       });
     },

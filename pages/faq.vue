@@ -50,7 +50,7 @@
 
           <v-row v-if="questions.length > 0">
             <v-col>
-              <v-expansion-panels active-class="grey lighten-3" accordion>
+              <v-expansion-panels active-class="grey lighten-4" accordion>
                 <v-expansion-panel
                   v-for="(question, key) in questions"
                   :key="key"
@@ -84,11 +84,15 @@
                         required
                       />
                       <v-btn
+                        :disabled="loading"
                         :large="$vuetify.breakpoint.xsOnly ? true : false"
                         block
                         class="primary white--text"
                         type="submit"
-                      >Abschicken</v-btn>
+                      >
+                        <v-icon class="loader" v-if="loading">mdi-cached</v-icon>
+                        <span v-else>Abschicken</span>
+                      </v-btn>
                     </v-form>
                   </v-expansion-panel-content>
                 </v-expansion-panel>
@@ -141,9 +145,11 @@ export default {
     submit (event) {
       event.preventDefault()
       if (this.$refs.form.validate()) {
+        this.loading = true
         this.$store.dispatch('postQuestion', this.question).then(response => {
           this.message = response.message
           this.dialog = true
+          this.loading = false
 
           this.$refs.form.reset()
         });

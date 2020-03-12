@@ -23,9 +23,9 @@ export default {
     '~/plugins/particles.client.js',
     '~/plugins/typewriter.client.js'
   ],
-  // axios: {
-  //   browserBaseURL: 'https://transformationsuite.appspot.com'
-  // },
+  axios: {
+    browserBaseURL: 'https://transformationsuite.appspot.com'
+  },
   modules: [
     '@nuxtjs/axios',
     ['@nuxtjs/vuetify', {
