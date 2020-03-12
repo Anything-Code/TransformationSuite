@@ -39,11 +39,15 @@
               </v-card-text>
               <v-card-actions>
                 <v-btn
+                  :disabled="loading"
                   class="secondary--text"
                   @click="login"
                   block
                   :large="$vuetify.breakpoint.xsOnly ? true : false"
-                >Login</v-btn>
+                >
+                  <v-icon v-if="loading" class="loader">mdi-cached</v-icon>
+                  <span v-else>Login</span>
+                </v-btn>
               </v-card-actions>
             </v-card>
           </v-col>
@@ -65,20 +69,24 @@ export default {
     return {
       username: '',
       password: '',
+      loading: false,
       error: null,
       passwordVisible: false
     }
   },
   methods: {
     async login () {
+      this.loading = true
       try {
         await this.$store.dispatch('login', {
           username: this.username,
           password: this.password
         })
 
+        this.loading = false
         this.$router.push('/')
       } catch (error) {
+        this.loading = false
         this.error = error.message
       }
     }
