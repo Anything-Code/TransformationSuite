@@ -60,42 +60,25 @@
           
           <v-row>
             <v-col class="pt-0">
-              <v-form ref="form" @submit="submit">
-                <v-row>
-                  <v-col class="pt-0">
-                    <v-expansion-panels accordion>
-                      <v-expansion-panel
-                        v-for="(question, key) in questions"
-                        :key="key"
-                      >
-                        <v-expansion-panel-header :class="question.visible ? 'success' : ''">
-                          <v-text-field
-                            v-model="question.text"
-                            :rules="[rules.required, rules.counter]"
-                            :counter="400"
-                            label="Frage"
-                            required
-                          />
-                        </v-expansion-panel-header>
-                        <v-expansion-panel-content>
-                          <v-row justify="center" align="center">
-                            <v-col cols="1">
-                              <v-btn @click="question.visible = !question.visible" icon><v-icon>{{ question.visible ? 'mdi-check' : 'mdi-block-helper' }}</v-icon></v-btn>
-                            </v-col>
-                            <v-col cols="11">
-                              <v-textarea
-                                filled
-                                v-model="question.answer"
-                                label="Antwort"
-                              />
-                            </v-col>
-                          </v-row>
-                        </v-expansion-panel-content>
-                      </v-expansion-panel>
-                    </v-expansion-panels>
-                  </v-col>
-                </v-row>
-              </v-form>
+              <v-data-table
+                :headers="headers"
+                :items="questions"
+                no-data-text="Keine Fragen gefunden!"
+                class="elevation-1"
+              >
+                <template v-slot:item.text="{ item }">
+                  {{ item.text.substring(0, 20) }}{{ item.text.length > 20 ? '...' : '' }}
+                </template>
+                <template v-slot:item.edit="{ item }">
+                  <v-btn icon><v-icon>mdi-pen</v-icon></v-btn>
+                </template>
+                <template v-slot:item.visible="{ item }">
+                  <v-btn icon><v-icon>{{ item.visible ? 'mdi-checkbox-marked' : 'mdi-checkbox-blank-outline' }}</v-icon></v-btn>
+                </template>
+                <template v-slot:item.delete="{ item }">
+                  <v-btn @click="deleteQuestion(item.id)" icon><v-icon>mdi-trash-can-outline</v-icon></v-btn>
+                </template>
+              </v-data-table>
             </v-col>
           </v-row>
           
@@ -130,6 +113,13 @@ export default {
           } else return false
         }
       },
+      headers: [
+        { text: 'ID', align: 'start', value: 'id' },
+        { text: 'Frage', value: 'text' },
+        { text: 'Bearbeiten', value: 'edit', sortable: false },
+        { text: 'Sichtbar', value: 'visible', sortable: false },
+        { text: 'Löschen', value: 'delete', sortable: false }
+      ],
       tabs: 'answer',
       dialog: false
     }
@@ -142,6 +132,12 @@ export default {
           console.log(response.data)
         });
       }
+    },
+    deleteQuestion (id) {
+      this.$store.dispatch('deleteQuestion', id).then(response => {
+        console.log(response)
+        this.questions = response.questions
+      });
     },
     toggleDrawer () {
       this.$store.state.drawer ? this.$store.commit('SET_DRAWER', false) : this.$store.commit('SET_DRAWER', true)

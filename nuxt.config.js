@@ -15,7 +15,7 @@ export default {
   },
   css: ['~/assets/app.scss'],
   loading: {
-    color: '#FFC921',
+    color: '#FFFFFF',
     failedColor: '#A70553',
     continuous: true
   },
@@ -23,16 +23,11 @@ export default {
     '~/plugins/particles.client.js',
     '~/plugins/typewriter.client.js'
   ],
+  // axios: {
+  //   browserBaseURL: 'https://transformationsuite.appspot.com'
+  // },
   modules: [
     '@nuxtjs/axios',
-    ['@nuxtjs/pwa', {
-      manifest: {
-        name: 'Transformation Suite',
-        short_name: 'Transformation Suite',
-        lang: 'de',
-        description: 'Hier finden Sie die innovativsten Produkte zum Thema Digitalisierung, bereitgestellt durch die besten KMUs auf diesem Gebiet in Heidelberg. Außerdem können Sie sich für einen Ausstellungsplatz bewerben und Fragen stellen!'
-      }
-    }],
     ['@nuxtjs/vuetify', {
       theme: {
         themes: {
@@ -54,6 +49,14 @@ export default {
           family: 'Roboto'
         },
         icons: 'mdi'
+      }
+    }],
+    ['@nuxtjs/pwa', {
+      manifest: {
+        name: 'Transformation Suite',
+        short_name: 'Transformation Suite',
+        lang: 'de',
+        description: 'Hier finden Sie die innovativsten Produkte zum Thema Digitalisierung, bereitgestellt durch die besten KMUs auf diesem Gebiet in Heidelberg. Außerdem können Sie sich für einen Ausstellungsplatz bewerben und Fragen stellen!'
       }
     }]
   ],

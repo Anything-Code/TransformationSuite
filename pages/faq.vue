@@ -48,7 +48,7 @@
             </v-col>
           </v-row>
 
-          <v-row>
+          <v-row v-if="questions.length > 0">
             <v-col>
               <v-expansion-panels active-class="grey lighten-3" accordion>
                 <v-expansion-panel
@@ -71,7 +71,7 @@
               <v-expansion-panels accordion>
                 <v-expansion-panel>
                   <v-expansion-panel-header>
-                    <h1 class="title">Stellen Sie uns eine Frage</h1>
+                    <h1 class="title">Formulieren Sie hier eine Frage</h1>
                   </v-expansion-panel-header>
                   <v-expansion-panel-content>
                     <v-form ref="form" @submit="submit">
@@ -88,7 +88,7 @@
                         block
                         class="primary white--text"
                         type="submit"
-                      >Bestätigen</v-btn>
+                      >Abschicken</v-btn>
                     </v-form>
                   </v-expansion-panel-content>
                 </v-expansion-panel>

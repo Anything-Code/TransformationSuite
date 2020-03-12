@@ -8,6 +8,7 @@ const router = express.Router()
 const app = express()
 
 let questions = new Array
+let counter = 0
 
 router.use((req, res, next) => {
   Object.setPrototypeOf(req, app.request)
@@ -32,7 +33,7 @@ router.get('/questions', (req, res) => {
 
 router.post('/question', (req, res) => {
   if (req.body.question.length <= 400) {
-    questions.push({ text: req.body.question, answer: '', visible: false})
+    questions.push({ id: ++counter, text: req.body.question, answer: '', visible: false})
 
     res.status(200).json({ message: 'Vielen Dank! Ihre Frage wurde angenommen und wird verarbeitet.' })
   } else res.status(401).json({ message: 'Ihre Frage darf maximal 400 Zeichen enthalten!' })
@@ -41,6 +42,22 @@ router.post('/question', (req, res) => {
 router.get('/admin/questions', (req, res) => {
   if (req.session && req.session.user) {
     res.status(200).json({ questions })
+  } else res.status(401).json({ message: 'Nicht berechtigt!' })
+})
+
+router.delete('/admin/question/:id', (req, res) => {
+  if (req.session && req.session.user) {
+    const id = parseInt(req.params.id)
+
+    if (questions.map(question => question.id).includes(id)) {
+      questions.splice(questions.findIndex(question => {
+        return question.id === id
+      }), 1)
+    } else {
+      res.status(400).json({ message: 'Es existiert keine solche Frage!' })
+    }
+
+    res.status(200).json({ message: 'Frage gelöscht!', questions })
   } else res.status(401).json({ message: 'Nicht berechtigt!' })
 })
 
