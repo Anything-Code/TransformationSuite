@@ -20,9 +20,9 @@ router.use((req, res, next) => {
 
 // Add POST - /api/login
 router.post('/login', (req, res) => {
-  if (req.body.username === 'demo' && req.body.password === 'demo') {
-    req.session.user = { username: 'demo' }
-    return res.json({ username: 'demo' })
+  if (req.body.username === 'admin' && req.body.password === 'admin') {
+    req.session.user = { username: 'admin' }
+    return res.json({ username: 'admin' })
   }
   res.status(401).json({ message: 'Falscher Benutzername oder Passwort!' })
 })

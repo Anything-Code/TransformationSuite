@@ -71,7 +71,7 @@ export default {
     // session middleware
     session({
       // store: new FileStore(),
-      secret: 'super-secret-key',
+      secret: 'niemand$kennt$diesen$key',
       resave: false,
       saveUninitialized: false,
       // cookie: { maxAge: 10000 }
