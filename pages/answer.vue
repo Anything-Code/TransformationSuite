@@ -179,7 +179,7 @@ export default {
     },
     editQuestion (event, question) {
       event.preventDefault()
-      if (this.$refs.form.validate()) {
+      // if (this.$refs.form.validate()) {
         this.editLoadingSingle = question.id
         const questions = JSON.parse(JSON.stringify(this.questions))
         questions.find(item => item.id === question.id).visible = !question.visible
@@ -187,7 +187,7 @@ export default {
           question.visible = !question.visible
           this.editLoadingSingle = null
         });
-      }
+      // }
     },
     deleteQuestion (id) {
       this.deleteLoading = id

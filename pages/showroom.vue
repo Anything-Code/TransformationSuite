@@ -35,7 +35,27 @@
     <v-sheet max-height="100vh" id="scrolling" class="overflow-y-auto">
       <v-content>
         <v-container class="fill-height">
-          
+          <v-row class="mx-0">
+            <v-col cols="12" md="6">
+              <v-hover>
+                <template v-slot:default="{ hover }">
+                  <v-card>
+                    <v-img src="/ameria.jpg"></v-img>
+
+                    <v-fade-transition>
+                      <v-overlay
+                        v-if="hover"
+                        absolute
+                        color="#036358"
+                      >
+                        <v-btn>Details</v-btn>
+                      </v-overlay>
+                    </v-fade-transition>
+                  </v-card>
+                </template>
+              </v-hover>
+            </v-col>
+          </v-row>
         </v-container>
       </v-content>
     </v-sheet>
@@ -50,11 +70,10 @@ export default {
     }
   },
   layout: 'main',
-  data () {
-    return {
+  data: () => ({
+      hover: false,
       tabs: 'showroom'
-    }
-  },
+  }),
   methods: {
     toggleDrawer () {
       this.$store.state.drawer ? this.$store.commit('SET_DRAWER', false) : this.$store.commit('SET_DRAWER', true)
