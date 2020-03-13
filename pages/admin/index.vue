@@ -84,7 +84,7 @@ export default {
         })
 
         this.loading = false
-        this.$router.push('/')
+        this.$router.push('/answer')
       } catch (error) {
         this.loading = false
         this.error = error.message
